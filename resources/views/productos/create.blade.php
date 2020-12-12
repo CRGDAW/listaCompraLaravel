@@ -9,7 +9,7 @@
                 Añadir producto
             </div>
             <div class="card-body" style="padding:30px">
-                <form action="/" method="GET">
+                <form action="/productos/create" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="nombre">Nombre</label>

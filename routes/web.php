@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +16,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\HomeController@getHome');
 
-Route::get('login', function () {
-    return view('auth.login');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('productos', 'App\Http\Controllers\ProductoController@getIndex');
+
+    Route::get('productos/show/{id}', 'App\Http\Controllers\ProductoController@getShow');
+
+    Route::get('productos/create', 'App\Http\Controllers\ProductoController@getCreate');
+
+    Route::post('productos/create', 'App\Http\Controllers\ProductoController@postCreate');
+
+    Route::get('productos/edit/{id}', 'App\Http\Controllers\ProductoController@getEdit');
+
+    Route::put('productos/edit/{id}', 'App\Http\Controllers\ProductoController@putEdit');
 });
 
-Route::get('logout', function () {
-    return view('auth.logout');
-});
 
-Route::get('productos', 'App\Http\Controllers\ProductoController@getIndex');
+Auth::routes();
 
-Route::get('productos/show/{id}', 'App\Http\Controllers\ProductoController@getShow');
-
-Route::get('productos/create', 'App\Http\Controllers\ProductoController@getCreate');
-
-Route::get('productos/edit/{id}', 'App\Http\Controllers\ProductoController@getEdit');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

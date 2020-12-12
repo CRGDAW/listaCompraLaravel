@@ -6,10 +6,10 @@
     <div class="offset-md-3 col-md-6">
         <div class="card">
             <div class="card-header text-center">
-                Modificar producto {{$producto->id}}
+                Modificar {{$producto->nombre}}
             </div>
             <div class="card-body" style="padding:30px">
-                <form action="/" method="POST">
+                <form action="/productos/edit/{{$producto->id}}" method="POST">
                     {{ method_field('PUT') }}
                     @csrf
                     <div class="form-group">
@@ -39,7 +39,7 @@
 
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary">
-                            Modificar producto {{$producto->id}}
+                            Modificar {{$producto->nombre}}
                         </button>
                     </div>
                 </form>
